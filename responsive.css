@@ -1,0 +1,648 @@
+@media (max-width: 2400px){
+
+    /* HOME PAGE: WHAT WE OFFER SECTION */
+.offer-info{
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+    /* HOME PAGE: OUR CAPABILITIES SECTION */
+.capabilities-card{
+    width: 60%;
+    margin: 0 auto;
+}
+
+
+    /* ABOUT US PAGE: MEET OUR TEAM SECTION */
+.team-sec-card{
+    width: 60%;
+    margin: 0 auto;
+}
+
+
+
+
+}
+
+
+
+
+
+@media (max-width: 1800px){
+
+    /* HOME PAGE: WHAT WE OFFER SECTION */
+.offer-info{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+    /* HOME PAGE: OUR CAPABILITIES SECTION */
+.capabilities-card{
+    width: 70%;
+    margin: 0 auto;
+}
+
+
+    /* ABOUT US PAGE: MEET OUR TEAM SECTION */
+.team-sec-card{
+    width: 70%;
+    margin: 0 auto;
+}
+
+
+
+
+}
+
+
+
+
+
+@media (max-width: 1400px){
+
+        /* HOME PAGE: WHAT WE OFFER SECTION */
+.offer-info{
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+    /* HOME PAGE: WHY CHOOSE US SECTION */
+.choose-info{
+    width:60%;
+    margin: 0 auto;
+}
+
+
+    /* HOME PAGE: OUR CAPABILITIES SECTION */
+.capabilities-card{
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+    /* ABOUT US PAGE: OUR VALUES SECTION */
+.values-box{
+    width:60%;
+    margin: 0 auto;
+}
+
+
+    /* ABOUT US PAGE: MEET OUR TEAM SECTION */
+.team-sec-card{
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+
+
+}
+
+
+
+
+
+@media (max-width: 1200px){
+
+    /* HOME PAGE: WHY CHOOSE US SECTION */
+.choose-info{
+    width: 70%;
+    margin: 0 auto;
+}
+
+
+    /* ABOUT US PAGE: OUR VALUES SECTION */
+.values-box{
+    width:80%;
+    margin: 0 auto;
+}
+
+
+    /* PRODUCT PAGE: FEATURES SECTION */
+.product-features-section{
+    width: 90%;
+}
+
+
+
+
+}
+
+
+
+
+
+@media (max-width: 992px){
+
+    /*NAVIGATION BAR*/
+.navbar{
+    height: 75px;
+}
+
+.hamburger{
+    display: block;
+}
+
+.nav-menu{
+    position: absolute;
+    left: 0;
+    top: 75px;
+    width: 100%;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: .4s;
+}
+
+.nav-menu.active{
+    max-height: 600px;
+}
+
+.nav-menu li{
+   width: 100%;
+}
+
+.nav-menu a,
+.dropdown-btn{
+    width: 100%;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropdown-menu{
+    position: static;
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    max-height: 0;
+    overflow: hidden;
+    border-radius: 0;
+    transition: max-height .3s;
+    box-shadow: none;
+}
+
+.dropdown.active .dropdown-menu{
+    max-height: 300px;
+}
+
+.dropdown-menu a{
+    padding-left: 15%;
+}
+
+
+    /*FOOTER*/
+.footer-container{
+        grid-template-columns:1fr 1fr;
+        gap:40px;
+    }
+
+
+    /* HOME PAGE: HERO SECTION */
+.Hero-msg h1{
+    font-size: 39px;
+    font-weight: 400;
+}
+
+.Hero-msg p{
+    font-size: 18px;
+}
+
+.Trusted-by-logos h5{
+    font-size: 20px;
+}
+
+
+    /* HOME PAGE: WHAT WE OFFER SECTION */
+.offer-heading h2{
+    font-size: 25px;
+}
+
+.offer-heading p{
+    font-size: 16px;
+}
+
+.box-offer{
+    padding: 25px;
+    height: auto;
+}
+
+.box-offer-heading img{
+    width: 50px;
+}
+
+.box-offer-heading h4{
+    font-size: 20px;
+}
+
+
+    /* HOME PAGE: WHY CHOOSE US SECTION */
+.choose-heading h2{
+    font-size: 25px;
+}
+
+.choose-heading p{
+    font-size: 16px;
+}
+
+.box-choose img{
+    width: 40px;
+}
+
+.box-choose h3{
+    font-size: 25px;
+}
+
+.choose-info{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+    /* HOME PAGE: BROKERS WE SUPPORT SECTION */
+.brokers-heading h2{
+    font-size: 25px;
+}
+
+.brokers-heading p{
+    font-size: 16px;
+}
+
+
+    /* HOME PAGE: OUR CAPABILITIES SECTION */
+.capabilities-heading h2{
+    font-size: 25px;
+}
+
+.capabilities-heading p{
+    font-size: 16px;
+}
+
+
+    /* HOME PAGE: HEAR FROM OUR CUSTOMERS */
+.testimonials-heading h2{
+    font-size: 25px;
+}
+
+.testimonials-heading p{
+    font-size: 16px;
+}
+
+.testimonial{
+    padding: 40px;
+}
+
+.testimonial p{
+    font-size: 16px;
+}
+
+.testimonial h4{
+    font-size: 20px;
+}
+
+.prev{
+    left: 0;
+}
+
+.next{
+    right: 0;
+}
+
+
+    /* ABOUT US PAGE: HERO SECTION */
+.hero-section{
+    height: auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.hero-section-container h1{
+    font-size: 39px;
+    font-weight: 400;
+
+}
+ 
+.hero-section-container h5{
+    font-size: 18px;
+}
+
+
+    /* ABOUT US PAGE: OUR MISSON & VISION SECTION */
+.mission-vision-heading h2{
+    font-size: 25px;
+}
+
+.mission-vision-heading p{
+    font-size: 16px;
+}
+
+.mission-vision-box-container{
+    height: auto;
+    padding: 25px;
+}
+
+.mission-vision-box-heading img{
+    width: 30px;
+}
+
+.mission-vision-box-heading h5{
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+
+    /* ABOUT US PAGE: OUR VALUES SECTION */
+.values-heading h2{
+    font-size: 25px;
+}
+
+.values-heading p{
+    font-size: 16px;
+}
+
+
+    /* ABOUT US PAGE: MEET OUR TEAM SECTION */
+.team-heading h2{
+    font-size: 25px;
+}
+
+.team-heading p{
+    font-size: 16px;
+}
+
+
+    /* ABOUT US PAGE: BE A PART OF OUR MISSION SECTION */
+.job-heading h2{
+    font-size: 25px;
+}
+
+.job-heading p{
+    font-size: 16px;
+}
+
+.job-role{
+    margin-bottom: 10px;
+}
+
+.job-role h6{
+    font-size: 16px;
+}
+
+.job-content p{
+    font-size: 13px;
+}
+
+.job-btn{
+    padding: 10px 10px;
+}
+
+.job-btn img{
+    margin-right: 5px;
+}
+
+
+    /* PRODUCT PAGE: PULSE BY MARSQUANT HEADER SECTION */
+.product-heading h1{
+    font-size: 39px;
+}
+
+.product-heading p{
+    font-size: 16px;
+}
+
+.product-heading img{
+    width: 100%;
+}
+
+
+    /* PRODUCT PAGE: FEATURES SECTION */
+.product-features-heading h3{
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.product-features-heading p{
+    font-size: 16px;
+}
+
+.product-features-description{
+    display: flex;
+    align-items: flex-start;
+}
+
+.product-features-description img{
+    height: 50px;
+    width: 50px;
+}
+
+.features-description h5{
+    font-size: 16px;
+}
+
+.features-description p{
+    font-size: 13px;
+}
+
+
+    /* FAQ PAGE: FAQ HEADER SECTION */
+.faq-heading h1{
+    font-size: 39px;
+    margin-bottom: 10px;
+}
+
+
+    /* FAQ SECTION */
+.faq-section {
+    flex-direction: column;
+}
+
+
+    /* FAQ PAGE: FAQ QUESTIONS - LEFT SIDE SECTION */
+.faq-left-side{
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+
+    /* FAQ PAGE: FAQ BOX - RIGHT SIDE SECTION */
+.demo-box{
+    margin: 0 auto;
+    padding: 20px 30px;
+    margin-bottom: 100px;
+}
+
+    
+    /* CONTACT PAGE: CONTACT HEADER SECTION */
+.contact-heading-section{
+    margin-bottom: 50px;
+}
+
+.contact-heading h1{
+    font-size: 39px;
+    background: linear-gradient(to right, #ff7a3d, #ff4f1f);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.contact-heading p{
+    font-size: 16px;
+    color: rgba(255,255,255,0.85);
+}
+
+
+    /* CONTACT PAGE: CONTACT SECTION */
+.contact-container{
+    flex-direction:column;
+    width: 100%;
+    max-width: 90%;
+}
+
+
+    /* CONTACT PAGE: CONTACT - LEFT SIDE SECTION */
+.contact-info{
+    width:100%;
+    align-self: center;
+}
+
+.contact-visual{
+    width:100%;
+}
+
+.cube-grid{
+    justify-content:center;
+}
+
+
+    /* CONTACT PAGE: CONTACT - RIGHT SIDE SECTION */
+.input-row{
+    flex-direction:column;
+    gap:25px;
+    margin-bottom:25px;
+}
+
+.send-btn{
+    width:100%;
+    float:none;
+}
+
+
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+    /*FOOTER*/
+.footer{
+    padding:50px 25px;
+}
+
+.footer-container{
+    grid-template-columns:1fr;
+    gap:40px;
+}
+
+.company-info p{
+    max-width:100%;
+}
+
+.footer-col h3{
+    margin-bottom:20px;
+}
+
+.footer-col ul li{
+    margin-bottom:18px;
+}
+
+.footer-bottom{
+    flex-direction:column;
+    text-align:center;
+}
+
+.footer-links{
+    gap:20px;
+    flex-wrap:wrap;
+    flex-direction: column;
+    justify-content:center;
+}
+
+
+    /* HOME PAGE: HEAR FROM OUR CUSTOMERS SECTION */
+.testimonial{
+    padding: 30px 25px;
+    border-radius: 25px;
+}
+
+.testimonial img{
+    width: 20px;
+}
+
+.testimonial p{
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+
+.testimonial h6{
+    font-size: 18px;
+}
+
+.arrow{
+    width: 45px;
+    height: 45px;
+}
+
+.arrow i{
+    font-size: 15px;
+}
+    
+
+
+
+}
+
+
+
+
+
+@media (max-width: 576px){
+
+    /*NAVIGATION BAR*/
+
+
+
+    /* HOME PAGE: OUR CAPABILITIES SECTION */
+.capabilities-card{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+    /* ABOUT US PAGE: OUR VALUES SECTION */
+.values-box{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+    /* ABOUT US PAGE: MEET OUR TEAM SECTION */
+.team-sec-card{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+
+
+}
