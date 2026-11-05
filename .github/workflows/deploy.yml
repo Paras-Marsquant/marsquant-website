@@ -29,8 +29,9 @@ jobs:
           test -f index.html
           test -f about.html
           test -f contact.html
-          test -f product.html
+          test -f solutions.html
           test -f faq.html
+          test -f pulse.html
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -46,6 +47,11 @@ jobs:
           aws s3 sync ./ s3://marsquant.in/ \
             --exclude ".git/*" \
             --exclude ".github/*" \
+            --exclude ".vscode/*" \
+            --exclude "todo.md" \
+            --exclude "cicd-test.txt" \
+            --exclude "product.html" \
+            --exclude "responsive.css" \
             --exclude ".gitignore" \
             --exclude "README.md"
 

@@ -1,586 +1,86 @@
-// Hamburger Menu Functionality
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".nav-menu");
-
-if (hamburger && navMenu) {
-    hamburger.addEventListener("click", () => {
-        navMenu.classList.toggle("active");
-    });
+// Mobile menu
+const burger=document.querySelector('.burger'),links=document.getElementById('links');
+if(burger&&links){
+  burger.addEventListener('click',()=>{const o=links.classList.toggle('open');burger.setAttribute('aria-expanded',o)});
+  links.addEventListener('click',()=>{links.classList.remove('open');burger.setAttribute('aria-expanded','false')});
 }
 
-const dropdown = document.querySelector(".dropdown");
-const dropdownBtn = document.querySelector(".dropdown-btn");
-
-if (dropdown && dropdownBtn) {
-    dropdownBtn.addEventListener("click", function (e) {
-        e.stopPropagation();
-        dropdown.classList.toggle("active");
-    });
-
-    document.addEventListener("click", function () {
-        dropdown.classList.remove("active");
-    });
-
-    dropdown.addEventListener("click", function (e) {
-        e.stopPropagation();
-    });
+// Hero live chart + price
+const pts=[],line=document.getElementById('line'),price=document.getElementById('price');
+if(line&&price){
+  let p=24318.4;for(let i=0;i<30;i++)pts.push(45);
+  function tick(){p+=(Math.random()-.48)*8;pts.push(Math.max(8,Math.min(82,pts[pts.length-1]+(Math.random()-.5)*14)));pts.shift();
+  line.setAttribute('points',pts.map((y,i)=>`${i*10.3},${y}`).join(' '));price.textContent=p.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2})}
+  tick();setInterval(tick,1200);
 }
 
-// Current Page Functionality For Product Pages
-const currentPage = window.location.pathname.split("/").pop();
-
-document.querySelectorAll(".dropdown-menu a").forEach(link => {
-    if (link.getAttribute("href") === currentPage) {
-        link.classList.add("active");
-        const ddBtn = document.querySelector(".dropdown-btn");
-        if (ddBtn) ddBtn.classList.add("active");
-    }
-});
-
-// FAQ Accordion
-const faqs = document.querySelectorAll(".faq");
-
-if (faqs.length) {
-    faqs.forEach(faq => {
-        faq.addEventListener("click", () => {
-            faqs.forEach(item => {
-                if (item !== faq) item.classList.remove("active");
-            });
-            faq.classList.toggle("active");
-        });
-    });
+// Solutions dashboard live chart + price
+const solutionsLine=document.getElementById('solutions-line'),solutionsPrice=document.getElementById('solutions-price');
+if(solutionsLine&&solutionsPrice){
+  const solutionsPoints=Array.from({length:30},(_,i)=>86-i*2.1);
+  let solutionsValue=24319.4;
+  const renderSolutionsLine=()=>solutionsLine.setAttribute('points',solutionsPoints.map((y,i)=>`${i*14.48},${y}`).join(' '));
+  renderSolutionsLine();
+  function tickSolutions(){
+    solutionsValue+=(Math.random()-.48)*8;
+    solutionsPoints.push(Math.max(8,Math.min(88,solutionsPoints[solutionsPoints.length-1]+(Math.random()-.5)*14)));
+    solutionsPoints.shift();
+    renderSolutionsLine();
+    solutionsPrice.textContent=solutionsValue.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    tickSolutions();setInterval(tickSolutions,1200);
+  }
 }
 
-// TESTIMONIAL Slider
-const slides = document.querySelector(".slides");
-const testimonials = document.querySelectorAll(".testimonial");
-const dots = document.querySelectorAll(".dot");
-const prevBtn = document.querySelector(".prev");
-const nextBtn = document.querySelector(".next");
-
-if (slides && prevBtn && nextBtn && dots.length) {
-    let currentIndex = 0;
-
-    function updateSlider() {
-        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-        dots.forEach(dot => dot.classList.remove("active"));
-        dots[currentIndex].classList.add("active");
-    }
-
-    nextBtn.addEventListener("click", () => {
-        currentIndex++;
-        if (currentIndex >= testimonials.length) currentIndex = 0;
-        updateSlider();
-    });
-
-    prevBtn.addEventListener("click", () => {
-        currentIndex--;
-        if (currentIndex < 0) currentIndex = testimonials.length - 1;
-        updateSlider();
-    });
-
-    dots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-            currentIndex = index;
-            updateSlider();
-        });
-    });
+// Stats count-up
+const statEls=document.querySelectorAll('[data-n]');
+if(statEls.length&&'IntersectionObserver'in window){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
+  const el=e.target,n=+el.dataset.n,s=el.dataset.s;let t=0;const id=setInterval(()=>{t+=n/40;if(t>=n){t=n;clearInterval(id)}el.textContent=Math.round(t)+s},25)}),{threshold:.6});
+  statEls.forEach(el=>io.observe(el));
 }
 
-// ============================================
-// // ============================================
-// CHECKLIST -> FORM -> THANK YOU OVERLAY SYSTEM
-// ============================================
-
-const checklistFloat = document.querySelector(".checklist-float");
-const checklistOverlay = document.querySelector(".checklist-overlay");
-const checklistClose = document.querySelector(".checklist-close");
-const capChecks = document.querySelectorAll(".cap-check");
-const checklistSubmit = document.querySelector(".checklist-submit");
-
-const formOverlay = document.querySelector(".form-overlay");
-const formClose = document.querySelector(".form-close");
-const formBack = document.querySelector(".form-back");
-
-const thankyouOverlay = document.querySelector(".thankyou-overlay");
-const thankyouClose = document.querySelector(".thankyou-close");
-
-const capForm = document.querySelector(".cap-form");
-
-const body = document.body;
-
-
-// ============================================
-// BODY OVERLAY STATE
-// ============================================
-
-function updateOverlayState() {
-
-    const isAnyOverlayOpen = [
-        checklistOverlay,
-        formOverlay,
-        thankyouOverlay
-    ].some(el =>
-        el && el.classList.contains("active")
-    );
-
-    body.classList.toggle(
-        "overlay-open",
-        isAnyOverlayOpen
-    );
+// Testimonial slider
+const slides=[...document.querySelectorAll('.slide')],dots=document.querySelector('.dots');
+const next=document.querySelector('.next'),prev=document.querySelector('.prev');
+if(slides.length&&dots&&next&&prev){
+  let cur=0,timer;
+  slides.forEach(()=>dots.appendChild(document.createElement('i')));
+  function show(i){cur=(i+slides.length)%slides.length;slides.forEach((s,k)=>s.classList.toggle('on',k===cur));[...dots.children].forEach((d,k)=>d.classList.toggle('on',k===cur))}
+  function auto(){clearInterval(timer);timer=setInterval(()=>show(cur+1),6000)}
+  next.onclick=()=>{show(cur+1);auto()};
+  prev.onclick=()=>{show(cur-1);auto()};
+  show(0);auto();
 }
 
-
-// ============================================
-// OPEN CHECKLIST
-// ============================================
-
-if (checklistFloat && checklistOverlay) {
-
-    checklistFloat.addEventListener("click", () => {
-
-        checklistOverlay.classList.add("active");
-
-        updateOverlayState();
-
+// FAQ category and text filters
+const faqList=document.querySelector('.faq-list'),faqSearch=document.getElementById('faq-search');
+if(faqList&&faqSearch){
+  const faqItems=[...faqList.querySelectorAll('details[data-category]')];
+  const faqFilters=[...document.querySelectorAll('.faq-filter[data-category]')];
+  const faqEmpty=faqList.querySelector('.faq-empty');
+  let activeCategory='all';
+  function filterFaqs(){
+    const query=faqSearch.value.trim().toLocaleLowerCase();
+    let visibleCount=0;
+    faqItems.forEach(item=>{
+      const matchesCategory=activeCategory==='all'||item.dataset.category===activeCategory;
+      const matchesQuery=!query||item.textContent.toLocaleLowerCase().includes(query);
+      item.hidden=!(matchesCategory&&matchesQuery);
+      if(!item.hidden)visibleCount++;
     });
-
-}
-
-
-// ============================================
-// CLOSE CHECKLIST
-// ============================================
-
-if (checklistClose && checklistOverlay) {
-
-    checklistClose.addEventListener("click", () => {
-
-        checklistOverlay.classList.remove("active");
-
-        updateOverlayState();
-
+    if(faqEmpty)faqEmpty.hidden=visibleCount>0;
+  }
+  faqFilters.forEach(button=>button.addEventListener('click',()=>{
+    activeCategory=button.dataset.category;
+    faqFilters.forEach(filter=>{
+      const isActive=filter===button;
+      filter.classList.toggle('active',isActive);
+      filter.setAttribute('aria-pressed',String(isActive));
     });
-
-}
-
-
-// ============================================
-// CLOSE CHECKLIST BY CLICKING OUTSIDE
-// ============================================
-
-if (checklistOverlay) {
-
-    checklistOverlay.addEventListener("click", (e) => {
-
-        if (e.target === checklistOverlay) {
-
-            checklistOverlay.classList.remove("active");
-
-            updateOverlayState();
-
-        }
-
-    });
-
-}
-
-
-// ============================================
-// SHOW NEXT BUTTON WHEN CAPABILITY SELECTED
-// ============================================
-
-if (capChecks.length && checklistSubmit) {
-
-    function updateSubmitButton() {
-
-        const anyChecked =
-            Array.from(capChecks)
-                .some(cb => cb.checked);
-
-        checklistSubmit.classList.toggle(
-            "show",
-            anyChecked
-        );
-
-    }
-
-
-    capChecks.forEach(cb => {
-
-        cb.addEventListener(
-            "change",
-            updateSubmitButton
-        );
-
-    });
-
-
-    // ========================================
-    // CHECKLIST -> FORM
-    // ========================================
-
-    checklistSubmit.addEventListener("click", () => {
-
-        const anyChecked =
-            Array.from(capChecks)
-                .some(cb => cb.checked);
-
-        if (!anyChecked) {
-
-            alert(
-                "Please select at least one capability."
-            );
-
-            return;
-
-        }
-
-
-        if (formOverlay) {
-
-            checklistOverlay.classList.remove(
-                "active"
-            );
-
-            formOverlay.classList.add(
-                "active"
-            );
-
-            updateOverlayState();
-
-        }
-
-    });
-
-}
-
-
-// ============================================
-// FORM BACK -> CHECKLIST
-// ============================================
-
-if (formBack && formOverlay) {
-
-    formBack.addEventListener("click", () => {
-
-        formOverlay.classList.remove(
-            "active"
-        );
-
-        if (checklistOverlay) {
-
-            checklistOverlay.classList.add(
-                "active"
-            );
-
-        }
-
-        updateOverlayState();
-
-    });
-
-}
-
-
-// ============================================
-// FORM CLOSE
-// ============================================
-
-if (formClose && formOverlay) {
-
-    formClose.addEventListener("click", () => {
-
-        formOverlay.classList.remove(
-            "active"
-        );
-
-        updateOverlayState();
-
-    });
-
-}
-
-
-// ============================================
-// CLOSE FORM BY CLICKING OUTSIDE
-// ============================================
-
-if (formOverlay) {
-
-    formOverlay.addEventListener("click", (e) => {
-
-        if (e.target === formOverlay) {
-
-            formOverlay.classList.remove(
-                "active"
-            );
-
-            updateOverlayState();
-
-        }
-
-    });
-
-}
-
-
-// ============================================
-// FORM SUBMIT -> WEB3FORMS
-// ============================================
-
-if (capForm) {
-
-    capForm.addEventListener(
-        "submit",
-        async (e) => {
-
-            e.preventDefault();
-
-
-            // --------------------------------
-            // VALIDATE FORM
-            // --------------------------------
-
-            if (!capForm.checkValidity()) {
-
-                capForm.reportValidity();
-
-                return;
-
-            }
-
-
-            // --------------------------------
-            // CREATE FORM DATA
-            // --------------------------------
-
-            const formData =
-                new FormData(capForm);
-
-
-            // --------------------------------
-            // GET SELECTED CAPABILITIES
-            // --------------------------------
-
-            const selectedCapabilities =
-                Array.from(capChecks)
-
-                    .filter(cb => cb.checked)
-
-                    .map(cb =>
-                        cb.closest("label")
-                            ?.querySelector("span")
-                            ?.textContent
-                            .trim()
-                    )
-
-                    .filter(Boolean);
-
-
-            // --------------------------------
-            // CREATE NUMBERED CAPABILITY LIST
-            // --------------------------------
-
-            if (selectedCapabilities.length) {
-
-                const capabilityText =
-                    selectedCapabilities
-                        .map(
-                            (capability, index) =>
-                                `[${index + 1}] ${capability}`
-                        )
-                        .join("\n");
-
-
-                formData.set(
-                    "Selected Capabilities",
-                    capabilityText
-                );
-
-            }
-
-
-            // --------------------------------
-            // WEB3FORMS BOT CHECK
-            // --------------------------------
-
-            formData.set(
-                "botcheck",
-                formData.get("botcheck") || ""
-            );
-
-
-            // --------------------------------
-            // SEND TO WEB3FORMS
-            // --------------------------------
-
-            try {
-
-                const res = await fetch(
-                    "https://api.web3forms.com/submit",
-                    {
-                        method: "POST",
-                        body: formData
-                    }
-                );
-
-
-                const data =
-                    await res.json();
-
-
-                console.log(
-                    "Web3Forms response:",
-                    data
-                );
-
-
-                if (
-                    !res.ok ||
-                    data.success !== true
-                ) {
-
-                    throw new Error(
-                        data.message ||
-                        "Submission failed"
-                    );
-
-                }
-
-
-                // --------------------------------
-                // CLOSE FORM
-                // --------------------------------
-
-                if (formOverlay) {
-
-                    formOverlay.classList.remove(
-                        "active"
-                    );
-
-                }
-
-
-                // --------------------------------
-                // CLOSE CHECKLIST
-                // --------------------------------
-
-                if (checklistOverlay) {
-
-                    checklistOverlay.classList.remove(
-                        "active"
-                    );
-
-                }
-
-
-                // --------------------------------
-                // SHOW THANK YOU
-                // --------------------------------
-
-                if (thankyouOverlay) {
-
-                    thankyouOverlay.classList.add(
-                        "active"
-                    );
-
-                }
-
-
-                updateOverlayState();
-
-
-                // --------------------------------
-                // RESET FORM
-                // --------------------------------
-
-                capForm.reset();
-
-
-                // --------------------------------
-                // RESET CHECKBOXES
-                // --------------------------------
-
-                capChecks.forEach(cb => {
-
-                    cb.checked = false;
-
-                });
-
-
-                // --------------------------------
-                // HIDE NEXT BUTTON
-                // --------------------------------
-
-                if (checklistSubmit) {
-
-                    checklistSubmit.classList.remove(
-                        "show"
-                    );
-
-                }
-
-
-            } catch (err) {
-
-                console.error(
-                    "Web3Forms Error:",
-                    err
-                );
-
-
-                alert(
-                    "Sorry, there was an error submitting your details. " +
-                    "Please try again or contact us directly at " +
-                    "contact@marsquant.com."
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-// ============================================
-// THANK YOU CLOSE
-// ============================================
-
-if (thankyouClose && thankyouOverlay) {
-
-    thankyouClose.addEventListener("click", () => {
-
-        thankyouOverlay.classList.remove(
-            "active"
-        );
-
-        updateOverlayState();
-
-    });
-
-}
-
-
-// ============================================
-// CLOSE THANK YOU BY CLICKING OUTSIDE
-// ============================================
-
-if (thankyouOverlay) {
-
-    thankyouOverlay.addEventListener("click", (e) => {
-
-        if (e.target === thankyouOverlay) {
-
-            thankyouOverlay.classList.remove(
-                "active"
-            );
-
-            updateOverlayState();
-
-        }
-
-    });
-
+    filterFaqs();
+  }));
+  faqSearch.addEventListener('input',filterFaqs);
+  filterFaqs();
 }
