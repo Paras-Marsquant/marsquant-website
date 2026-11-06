@@ -836,7 +836,7 @@ a.contact-prompt:hover{background:#fff0eb}
 .pulse-hero-copy .pulse-eyebrow{margin-bottom:20px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:9px;letter-spacing:.13em}
 .pulse-hero-copy .pulse-eyebrow>span{width:22px;height:1px;border-radius:0;box-shadow:none}
 .pulse-wordmark{display:flex;align-items:center;gap:16px}
-.pulse-wordmark-logo{display:block;width:46px;height:46px;border-radius:8px;object-fit:cover}
+.pulse-wordmark-logo{display:block;width:76px;height:46px;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;object-fit:contain}
 .pulse-hero .pulse-wordmark h1{margin:0;color:#f5f6fb;font-size:clamp(54px,6vw,66px);line-height:.98;letter-spacing:-.04em}
 .pulse-hero .pulse-wordmark h1 span{color:#f25a1f}
 .pulse-wordmark>span{padding-left:15px;border-left:1px solid rgba(255,255,255,.16);color:#9099b0;font-size:8px;line-height:1.9}
