@@ -3,7 +3,8 @@
   window.__marsQuantRequirementOverlayLoaded = true;
 
   const CONFIG = {
-    accessKey: 'e8b60715-c55b-4b02-9054-410988807f54'
+    accessKey: 'e8b60715-c55b-4b02-9054-410988807f54',
+    whatsappNumber: '919828547441'
   };
   const scriptUrl = document.currentScript && document.currentScript.src;
   if (!scriptUrl) {
@@ -125,6 +126,22 @@
     document.head.appendChild(styleLink);
   }
   addFontAwesome();
+
+  if (!document.querySelector('.mq-whatsapp-float')) {
+    const whatsappLink = document.createElement('a');
+    whatsappLink.className = 'mq-whatsapp-float';
+    whatsappLink.href = `https://wa.me/${CONFIG.whatsappNumber}`;
+    whatsappLink.target = '_blank';
+    whatsappLink.rel = 'noopener noreferrer';
+    whatsappLink.setAttribute('aria-label', 'Chat with us on WhatsApp');
+
+    const whatsappIcon = document.createElement('img');
+    whatsappIcon.src = new URL('Home Page  Icons/whatsapp.svg', scriptUrl).href;
+    whatsappIcon.alt = '';
+    whatsappIcon.setAttribute('aria-hidden', 'true');
+    whatsappLink.appendChild(whatsappIcon);
+    document.body.appendChild(whatsappLink);
+  }
 
   const sectionsMarkup = checklistSections.map((section, sectionIndex) => `
     <section class="mq-req__section" aria-labelledby="mq-req-section-${sectionIndex}">

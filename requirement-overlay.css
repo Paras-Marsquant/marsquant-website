@@ -7,6 +7,33 @@ html.mq-req-open {
   overflow: hidden;
 }
 
+.mq-whatsapp-float {
+  position: fixed;
+  z-index: 9999;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  display: grid;
+  width: 60px;
+  height: 60px;
+  place-items: center;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #25d366;
+  box-shadow: 0 6px 20px rgba(11, 18, 42, .24);
+  transition: transform .18s, box-shadow .18s;
+}
+
+.mq-whatsapp-float:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(11, 18, 42, .3);
+}
+
+.mq-whatsapp-float img {
+  display: block;
+  width: 38px;
+  height: 38px;
+}
+
 .mq-req,
 .mq-req * {
   box-sizing: border-box;
