@@ -51,7 +51,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--o);outline-offset:2
 .screen-footer span{display:block;margin-top:5px;color:#e2e8f0;font:10px ui-monospace,SFMono-Regular,Consolas,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .order{position:absolute;left:0;bottom:0;background:#fff;border:1px solid #e8ebf0;border-radius:16px;padding:12px 16px;font-size:11px;box-shadow:0 14px 30px rgba(0,0,0,.16);color:var(--mut)}
 .order b{display:inline-block;color:var(--txt);margin:3px 0}.g{color:#10a86d}
-.trust{background:#343a40;border-block:1px solid #49515a;padding:32px 0;overflow:hidden}
+.trust{background:var(--navy);border-block:1px solid #49515a;padding:32px 0;overflow:hidden}
 .trust .eyebrow.c{color:#f3f4f6}
 .marquee{overflow:hidden;margin-top:20px}.track{display:flex;align-items:center;gap:64px;width:max-content;animation:scroll 30s linear infinite}
 .track img{display:block;flex:0 0 130px;width:130px;height:42px;object-fit:contain}
@@ -342,8 +342,8 @@ a.contact-prompt:hover{background:#fff0eb}
 .stats div{min-width:0;padding:40px 36px;border-left:1px solid var(--line)}.stats div:first-child{border:0;padding-left:0}
 .stats b{display:block;margin-bottom:8px;font-size:68px;line-height:1;letter-spacing:-.04em;white-space:nowrap}.stats small{font:10px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:.16em;text-transform:uppercase;color:#7b8498}
 .band{background:var(--bg)}
-.brokers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:40px}
-.brokers span{display:grid;place-items:center;min-height:72px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;cursor:default;transition:.2s}
+.brokers{display:flex;gap:12px;width:max-content;margin-top:40px;animation:scroll 40s linear infinite}
+.brokers span{display:grid;flex:0 0 180px;place-items:center;min-height:72px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;cursor:default;transition:.2s}
 .brokers img{display:block;width:100%;height:34px;object-fit:contain}
 .brokers span:hover,.brokers .on{border-color:var(--o)}
 .card ul{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;display:grid;gap:6px}

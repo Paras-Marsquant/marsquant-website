@@ -18,40 +18,22 @@
       options: [
         'Broker API Integration',
         'Real-time Trade Execution',
-        'Simultaneous Instrument Management',
         'Real-time Data Processing',
         'Multiple Broker Integration',
-        'Historical Data Fetching',
-        'Third-Party Integration',
-        'Market Data Integration',
-        'Order Execution',
         'Complex Strategy Codification for Equity and FnO (Technical, Fundamental and Quantitative)',
-        'Multithreading Processing',
-        'Real-time ATM Strike Management',
         'Dynamic Parameter Input',
-        'Cloud based strategy deployment'
+        'Cloud based strategy deployment',
+        'Support for GTT, Day, Bracket, Limit, Market, and IOC orders',
+        'Custom Order Slicing'
       ]
     },
     {
       title: 'Data Processing Engine',
       options: [
         'Co-location server (NSE/BSE/MCX)',
-        'Real-time Chart Formation',
-        'Custom Indicator Calculation',
         'Complex Calculations for signal generation',
         'Historical Data Utilization',
-        'Multiple Data Provider Funnel',
-        'Dynamic ATM Changes',
-        'Real-time Straddle and Strangle Price Capturing'
-      ]
-    },
-    {
-      title: 'Order Types and Execution',
-      options: [
-        'Support for GTT, Day, Bracket, Limit, Market, and IOC orders',
-        'Custom Order Slicing',
-        'Fast Order Execution',
-        'Exit Conditions'
+        'Multiple Data Provider Funnel'
       ]
     },
     {
@@ -68,23 +50,15 @@
     {
       title: 'Cloud-Based Infrastructure and Computing',
       options: [
-        'Data Collection multiple sources tick-by-tick and snapshot',
         'Schedule, extract, and funnel collected data automatically',
         'Strategy Scheduling',
         'Automated Logins for multiple data source providers',
-        'Customizable Data Storage Solutions',
         'AWS Deployment',
-        'AWS Managed Services for automation',
-        'Real-time Data Storage'
+        'AWS Managed Services for automation'
       ]
     },
-    {
-      title: 'Other capabilities',
-      options: [
-        'Risk Management System',
-        'Order Management System'
-      ]
-    }
+    { title: 'Risk Management System', options: [] },
+    { title: 'Order Management System', options: [] }
   ];
 
   const escapeHtml = value => String(value).replace(/[&<>"']/g, character => ({
@@ -145,16 +119,18 @@
 
   const sectionsMarkup = checklistSections.map((section, sectionIndex) => `
     <section class="mq-req__section" aria-labelledby="mq-req-section-${sectionIndex}">
-      <h3 id="mq-req-section-${sectionIndex}">${escapeHtml(section.title)}</h3>
-      <div class="mq-req__options">
-        ${section.options.map((option, optionIndex) => {
-          const id = `mq-req-option-${sectionIndex}-${optionIndex}`;
-          return `<label class="mq-req__check" for="${id}">
-            <input id="${id}" type="checkbox" name="capability" value="${escapeHtml(option)}">
-            <span>${escapeHtml(option)}</span>
-          </label>`;
-        }).join('')}
+      <div class="mq-req__section-heading">
+        <h3 id="mq-req-section-${sectionIndex}">
+          <label class="mq-req__section-check">
+            <input type="checkbox" name="capability" value="${escapeHtml(section.title)}">
+            <span>${escapeHtml(section.title)}</span>
+          </label>
+        </h3>
+        ${section.options.length ? `<button class="mq-req__info" type="button" data-section-info aria-expanded="false" aria-controls="mq-req-details-${sectionIndex}" aria-label="Show details for ${escapeHtml(section.title)}">i</button>` : ''}
       </div>
+      ${section.options.length ? `<ul class="mq-req__details" id="mq-req-details-${sectionIndex}" hidden>
+        ${section.options.map(option => `<li>${escapeHtml(option)}</li>`).join('')}
+      </ul>` : ''}
     </section>
   `).join('');
 
@@ -295,6 +271,13 @@
   });
 
   overlay.addEventListener('click', event => {
+    const infoButton = event.target.closest('[data-section-info]');
+    if (infoButton) {
+      const details = overlay.querySelector(`#${CSS.escape(infoButton.getAttribute('aria-controls'))}`);
+      const expanded = infoButton.getAttribute('aria-expanded') === 'true';
+      infoButton.setAttribute('aria-expanded', String(!expanded));
+      details.hidden = expanded;
+    }
     if (event.target === overlay.querySelector('.mq-req__backdrop')) closeOverlay();
     const closeButton = event.target.closest('[data-close]');
     if (closeButton) closeOverlay();

@@ -152,54 +152,85 @@ html.mq-req-open {
 
 .mq-req__sections {
   display: grid;
-  gap: 20px;
+  gap: 10px;
+}
+
+.mq-req__section {
+  padding: 12px 14px;
+  border: 1px solid #e7e9ef;
+  border-radius: 10px;
+}
+
+.mq-req__section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .mq-req__section h3 {
-  margin: 0 0 10px;
-  color: #f25a1f;
-  font: 700 11px/1.4 Manrope, system-ui, sans-serif;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-}
-
-.mq-req__options {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px 14px;
-}
-
-.mq-req__check {
-  display: flex;
   min-width: 0;
-  align-items: flex-start;
-  gap: 9px;
-  padding: 7px 8px;
-  border: 1px solid transparent;
-  border-radius: 8px;
+  margin: 0;
   color: #384154;
-  font-size: 12px;
-  line-height: 1.5;
+  font: 600 13px/1.5 Manrope, system-ui, sans-serif;
+}
+
+.mq-req__section-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   cursor: pointer;
-  transition: border-color .16s, background .16s;
 }
 
-.mq-req__check:hover {
-  border-color: #f3d6c9;
-  background: #fff8f5;
-}
-
-.mq-req__check input {
-  flex: 0 0 15px;
-  width: 15px;
-  height: 15px;
-  margin: 1px 0 0;
+.mq-req__section-check input {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  margin: 0;
   accent-color: #f25a1f;
   cursor: pointer;
 }
 
-.mq-req__check span {
-  min-width: 0;
+.mq-req__info {
+  display: grid;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 1px solid #d5d9e2;
+  border-radius: 50%;
+  background: #fff;
+  color: #606a7d;
+  font: italic 700 13px Georgia, serif;
+  cursor: pointer;
+  transition: color .16s, border-color .16s, background .16s;
+}
+
+.mq-req__info:hover,
+.mq-req__info[aria-expanded="true"] {
+  border-color: #f25a1f;
+  background: #fff5f1;
+  color: #f25a1f;
+}
+
+.mq-req__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px 16px;
+  margin: 12px 0 0 26px;
+  padding: 12px 0 0;
+  border-top: 1px solid #e7e9ef;
+  color: #687285;
+  font-size: 11px;
+  line-height: 1.5;
+  list-style: disc;
+  list-style-position: inside;
+}
+
+@media (max-width: 560px) {
+  .mq-req__details {
+    grid-template-columns: 1fr;
+  }
 }
 
 .mq-req__primary {
@@ -374,17 +405,12 @@ html.mq-req-open {
     padding: 16px;
   }
 
-  .mq-req__options,
   .mq-req__form-grid {
     grid-template-columns: 1fr;
   }
 
   .mq-req__sections {
     gap: 17px;
-  }
-
-  .mq-req__check {
-    padding: 6px 5px;
   }
 
   .mq-req__success-body {
