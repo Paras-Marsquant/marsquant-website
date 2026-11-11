@@ -339,7 +339,7 @@
       return;
     }
     if (!CONFIG.accessKey.trim()) {
-      errorMessage.textContent = 'The request form is not configured yet. Please contact us by email at contact@marsquant.com.';
+      errorMessage.textContent = 'The request form is not configured yet. Please contact us by email at contact@marsquant.in.';
       errorMessage.hidden = false;
       return;
     }
@@ -371,7 +371,7 @@
     } catch (error) {
       errorMessage.textContent = error instanceof Error
         ? `We couldn't submit your request. ${error.message}`
-        : "We couldn't submit your request. Please try again or email contact@marsquant.com.";
+        : "We couldn't submit your request. Please try again or email contact@marsquant.in.";
       errorMessage.hidden = false;
     } finally {
       submitButton.disabled = false;
