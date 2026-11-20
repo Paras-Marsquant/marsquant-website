@@ -554,6 +554,26 @@ a.contact-prompt:hover{background:#fff0eb}
 .pulse-promo>.btn{flex:none;padding:13px 22px;box-shadow:0 10px 28px rgba(242,90,31,.32)}
 @media(max-width:600px){.pulse-promo{gap:16px;padding-top:32px;padding-bottom:32px}}
 
+.pulse-popup{position:fixed;z-index:100;right:24px;bottom:96px;display:flex;width:min(360px,calc(100vw - 32px));max-height:min(700px,calc(100vh - 112px));flex-direction:column;overflow:auto;border:1px solid rgba(15,23,42,.1);border-radius:18px;background:#fff;box-shadow:0 22px 65px rgba(11,18,42,.28);opacity:0;pointer-events:none;transform:translate3d(0,20px,0) scale(.98);transition:opacity .32s ease,transform .32s ease,visibility 0s linear .32s;visibility:hidden}
+.pulse-popup.is-visible{opacity:1;pointer-events:auto;transform:translate3d(0,0,0) scale(1);transition-delay:0s;visibility:visible}
+.pulse-popup-close{position:absolute;z-index:2;top:10px;right:10px;display:grid;width:32px;height:32px;place-items:center;border:1px solid rgba(255,255,255,.55);border-radius:50%;background:rgba(11,18,42,.58);color:#fff;font:24px/1 Manrope,system-ui,sans-serif;cursor:pointer;backdrop-filter:blur(8px)}
+.pulse-popup-close:hover{background:rgba(11,18,42,.82)}
+.pulse-popup-visual{position:relative;flex:none;overflow:hidden;aspect-ratio:16/9;background:#0b122a}
+.pulse-popup-image-link{display:block;width:100%;height:100%}
+.pulse-popup-image{display:block;width:100%;height:100%;object-fit:cover;transition:opacity .16s ease}
+.pulse-popup-image.is-changing{opacity:.25}
+.pulse-popup-dots{position:absolute;right:12px;bottom:11px;display:flex;align-items:center;gap:6px;padding:6px 8px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(11,18,42,.62);backdrop-filter:blur(8px)}
+.pulse-popup-dot{width:7px;height:7px;padding:0;border:0;border-radius:99px;background:rgba(255,255,255,.58);cursor:pointer;transition:width .2s ease,background .2s ease}
+.pulse-popup-dot.is-active{width:18px;background:#ff7040}
+.pulse-popup-content{padding:19px 20px 20px}
+.pulse-popup-eyebrow{margin-bottom:7px;color:#e84f23;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.pulse-popup-content h2{max-width:none;margin:0 0 8px;color:#171a28;font-size:19px;line-height:1.28;letter-spacing:-.025em}
+.pulse-popup-description{margin:0;color:#657188;font-size:13px;line-height:1.55}
+.pulse-popup-cta{display:flex;min-height:43px;align-items:center;justify-content:center;gap:8px;margin-top:16px;padding:0 16px;border-radius:10px;background:#f4511e;color:#fff;font-size:13px;font-weight:800;transition:background .18s ease,transform .18s ease}
+.pulse-popup-cta:hover{background:#d94318;transform:translateY(-1px)}
+@media(max-width:600px){.pulse-popup{right:12px;bottom:92px;width:min(370px,calc(100% - 24px));max-height:calc(100vh - 108px);border-radius:16px}.pulse-popup-content{padding:16px}.pulse-popup-content h2{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.pulse-popup,.pulse-popup-image,.pulse-popup-dot,.pulse-popup-cta{transition:none}.pulse-popup-cta:hover{transform:none}}
+
 .pulse-page{background:#fff}
 .pulse-hero{position:relative;isolation:isolate;overflow:hidden;padding:70px 32px 86px;background:radial-gradient(ellipse at 82% 32%,rgba(59,50,106,.35),transparent 40%),linear-gradient(115deg,#0b122a 0%,#101834 64%,#17172f 100%);color:#fff}
 .pulse-hero:before{position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,transparent 0 49px,rgba(255,255,255,.025) 50px,transparent 51px),linear-gradient(0deg,transparent 0 49px,rgba(255,255,255,.02) 50px,transparent 51px);background-size:50px 50px;mask-image:linear-gradient(90deg,transparent,#000 38%,#000);content:""}

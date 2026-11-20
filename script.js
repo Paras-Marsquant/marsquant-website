@@ -84,3 +84,116 @@ if(faqList&&faqSearch){
   faqSearch.addEventListener('input',filterFaqs);
   filterFaqs();
 }
+
+// Pulse product popup
+(()=>{
+  const slides=[
+    {src:'Pulse/pulse_1.png',alt:'Pulse market intelligence workspace with a live NIFTY 50 chart',label:'Market intelligence'},
+    {src:'Pulse/pulse_2.png',alt:'Pulse options analytics dashboard with strike-level data',label:'Options analytics'},
+    {src:'Pulse/pulse_3.png',alt:'Pulse strategy builder with option legs and payoff analysis',label:'Strategy builder'},
+    {src:'Pulse/pulse_5.png',alt:'Pulse company research workspace with financial metrics',label:'Research and insights'},
+    {src:'Pulse/pulse_6.png',alt:'Pulse market heatmaps showing sector performance',label:'Market heatmaps'}
+  ];
+  const dismissedKey='marsquant-pulse-popup-dismissed';
+  try{
+    if(sessionStorage.getItem(dismissedKey)==='true')return;
+  }catch(error){
+    if(!(error instanceof DOMException))throw error;
+  }
+
+  const popup=document.createElement('aside');
+  popup.className='pulse-popup';
+  popup.setAttribute('role','dialog');
+  popup.setAttribute('aria-label','Discover Pulse by MarsQuant');
+  popup.setAttribute('aria-hidden','true');
+  popup.innerHTML=`
+    <button class="pulse-popup-close" type="button" aria-label="Close Pulse promotion">&times;</button>
+    <div class="pulse-popup-visual">
+      <a class="pulse-popup-image-link" href="https://pulse.marsquant.in/" tabindex="-1">
+        <img class="pulse-popup-image" src="${slides[0].src}" alt="${slides[0].alt}">
+      </a>
+      <div class="pulse-popup-dots" role="group" aria-label="Choose a Pulse preview"></div>
+    </div>
+    <div class="pulse-popup-content">
+      <p class="pulse-popup-eyebrow">Pulse by MarsQuant</p>
+      <h2>Make your next market move with clarity.</h2>
+      <p class="pulse-popup-description">Explore market intelligence, options analytics, strategy tools, and research in one workspace.</p>
+      <a class="pulse-popup-cta" href="https://pulse.marsquant.in/">Explore Pulse <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  `;
+  document.body.appendChild(popup);
+
+  const image=popup.querySelector('.pulse-popup-image');
+  const dots=popup.querySelector('.pulse-popup-dots');
+  const closeButton=popup.querySelector('.pulse-popup-close');
+  const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  let activeIndex=0;
+  let rotationTimer;
+  let imageTimer;
+
+  function showSlide(index){
+    activeIndex=(index+slides.length)%slides.length;
+    const slide=slides[activeIndex];
+    image.classList.add('is-changing');
+    window.clearTimeout(imageTimer);
+    imageTimer=window.setTimeout(()=>{
+      image.src=slide.src;
+      image.alt=slide.alt;
+      [...dots.children].forEach((dot,dotIndex)=>{
+        dot.classList.toggle('is-active',dotIndex===activeIndex);
+        dot.setAttribute('aria-pressed',String(dotIndex===activeIndex));
+      });
+      image.classList.remove('is-changing');
+    },160);
+  }
+
+  slides.forEach((slide,index)=>{
+    const dot=document.createElement('button');
+    dot.className='pulse-popup-dot';
+    dot.type='button';
+    dot.setAttribute('aria-label',`Show ${slide.label} preview`);
+    dot.setAttribute('aria-pressed',String(index===0));
+    dot.classList.toggle('is-active',index===0);
+    dot.addEventListener('click',()=>showSlide(index));
+    dots.appendChild(dot);
+  });
+
+  function startRotation(){
+    if(!reduceMotion.matches&&!rotationTimer){
+      rotationTimer=window.setInterval(()=>showSlide(activeIndex+1),4800);
+    }
+  }
+  function stopRotation(){
+    window.clearInterval(rotationTimer);
+    rotationTimer=undefined;
+  }
+
+  popup.addEventListener('mouseenter',stopRotation);
+  popup.addEventListener('mouseleave',startRotation);
+  popup.addEventListener('focusin',stopRotation);
+  popup.addEventListener('focusout',event=>{
+    if(!popup.contains(event.relatedTarget))startRotation();
+  });
+  reduceMotion.addEventListener?.('change',()=>{
+    if(reduceMotion.matches)stopRotation();
+    else startRotation();
+  });
+  closeButton.addEventListener('click',()=>{
+    popup.classList.remove('is-visible');
+    popup.setAttribute('aria-hidden','true');
+    stopRotation();
+    window.clearTimeout(imageTimer);
+    try{
+      sessionStorage.setItem(dismissedKey,'true');
+    }catch(error){
+      if(!(error instanceof DOMException))throw error;
+    }
+    window.setTimeout(()=>popup.remove(),350);
+  });
+
+  window.setTimeout(()=>{
+    popup.classList.add('is-visible');
+    popup.setAttribute('aria-hidden','false');
+    startRotation();
+  },3200);
+})();
