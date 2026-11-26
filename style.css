@@ -718,6 +718,7 @@ a.contact-prompt:hover{background:#fff0eb}
 .pulse-heatmaps-list li:before{position:absolute;left:0;color:#ff5424;content:"\2713";font-size:15px;font-weight:700}
 .pulse-heatmaps-visual{min-width:0}
 .pulse-heatmaps-visual img{display:block;width:100%;height:auto;border:1px solid rgba(155,169,205,.18);border-radius:14px;background:#0b122a;box-shadow:0 24px 48px rgba(17,24,48,.2)}
+.pulse-heatmaps-visual video{display:block;width:100%;height:100%;object-fit:contain;border:1px solid rgba(155,169,205,.18);border-radius:14px;background:#0b122a;box-shadow:0 24px 48px rgba(17,24,48,.2)}
 .pulse-workflow-visual,.pulse-analytics-visual,.pulse-strategy-visual,.pulse-paper-visual,.pulse-research-visual,.pulse-heatmaps-visual{aspect-ratio:16/10}
 .pulse-workflow-visual img,.pulse-analytics-visual img,.pulse-strategy-visual img,.pulse-paper-visual img,.pulse-research-visual img,.pulse-heatmaps-visual img{width:100%;height:100%;object-fit:contain}
 .pulse-paper-visual{aspect-ratio:auto}
@@ -849,6 +850,7 @@ a.contact-prompt:hover{background:#fff0eb}
   .pulse-heatmaps-copy>p:not(.eyebrow){font-size:16px}
   .pulse-heatmaps-list{gap:12px;font-size:15px}
   .pulse-heatmaps-visual img{border-radius:10px}
+  .pulse-heatmaps-visual video{border-radius:10px}
   .pulse-workspace-inner{grid-template-columns:1fr;gap:25px;padding:50px 18px 56px}
   .pulse-workspace-copy h2{font-size:31px}
   .pulse-workspace-copy>p:not(.eyebrow){font-size:15px}
