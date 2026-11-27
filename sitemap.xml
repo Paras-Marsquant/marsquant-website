@@ -3,19 +3,32 @@
     <url>
         <loc>https://marsquant.in/</loc>
     </url>
+    
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
     <url>
-        <loc>https://marsquant.in/about.html</loc>
+        <loc>https://marsquant.in/</loc>
     </url>
+
     <url>
-        <loc>https://marsquant.in/solutions.html</loc>
+        <loc>https://marsquant.in/about</loc>
     </url>
+
     <url>
-        <loc>https://marsquant.in/pulse.html</loc>
+        <loc>https://marsquant.in/solutions</loc>
     </url>
+
     <url>
-        <loc>https://marsquant.in/contact.html</loc>
+        <loc>https://marsquant.in/pulse</loc>
     </url>
+
     <url>
-        <loc>https://marsquant.in/faq.html</loc>
+        <loc>https://marsquant.in/contact</loc>
     </url>
+
+    <url>
+        <loc>https://marsquant.in/faq</loc>
+    </url>
+
 </urlset>
